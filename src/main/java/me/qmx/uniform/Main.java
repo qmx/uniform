@@ -12,7 +12,7 @@ public class Main {
             parser.parseArgument(args);
             new Uniform(options).process();
         } catch (CmdLineException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            parser.printUsage(System.err);
         }
     }
 }
