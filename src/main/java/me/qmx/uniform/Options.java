@@ -17,4 +17,8 @@ public class Options {
     public List<File> getFiles() {
         return files;
     }
+
+    public File getConfigFile() {
+        return configFile;
+    }
 }
