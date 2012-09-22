@@ -1,0 +1,2 @@
+#!/bin/sh
+(echo '#!/usr/bin/env java -jar'; cat target/uniform-1.0.one-jar.jar) > target/uniform && chmod +x target/uniform
