@@ -26,7 +26,9 @@ public class Uniform {
         InputStream configStream = null;
         try {
             configStream = new FileInputStream(options.getConfigFile());
+            final Map<String, String> config = new ConfigParser(configStream).parse();
             final Map<String, String> options = new HashMap<String, String>() {{
+                putAll(config);
                 put(JavaCore.COMPILER_SOURCE, "1.6");
             }};
             final CodeFormatter formatter = ToolFactory.createCodeFormatter(options);
