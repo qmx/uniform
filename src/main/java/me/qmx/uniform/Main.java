@@ -12,6 +12,7 @@ public class Main {
             parser.parseArgument(args);
             new Uniform(options).process();
         } catch (CmdLineException e) {
+            System.err.println("uniform [options] files...");
             parser.printUsage(System.err);
         }
     }
