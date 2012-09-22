@@ -4,6 +4,7 @@ import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.Option;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Options {
@@ -14,9 +15,9 @@ public class Options {
     private String sourceVersion = "1.6";
 
     @Argument(multiValued = true, required = true, usage = "the files to format", metaVar = "file1 file2...")
-    private File[] files = new File[]{};
+    private List<File> files = new ArrayList<File>();
 
-    public File[] getFiles() {
+    public List<File> getFiles() {
         return files;
     }
 

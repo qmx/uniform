@@ -3,6 +3,7 @@ package me.qmx.uniform;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -14,7 +15,7 @@ public class Main {
         try {
             parser.parseArgument(args);
             final FileInputStream configFile = new FileInputStream(options.getConfigFile());
-            new Uniform(configFile, options.getSourceVersion(), options.getFiles()).process();
+            new Uniform(configFile, options.getSourceVersion(), options.getFiles().toArray(new File[0])).process();
         } catch (CmdLineException e) {
             System.err.println("uniform [options] files...");
             parser.printUsage(System.err);
