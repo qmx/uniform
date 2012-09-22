@@ -7,6 +7,10 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.text.edits.TextEdit;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +23,9 @@ public class Uniform {
     }
 
     public void process() {
+        InputStream configStream = null;
         try {
+            configStream = new FileInputStream(options.getConfigFile());
             final Map<String, String> options = new HashMap<String, String>() {{
                 put(JavaCore.COMPILER_SOURCE, "1.6");
             }};
@@ -29,7 +35,17 @@ public class Uniform {
             final Document document = new Document(source);
             edit.apply(document);
         } catch (BadLocationException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (configStream != null) {
+                try {
+                    configStream.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 
